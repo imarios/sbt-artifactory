@@ -14,7 +14,7 @@ A minimal `build.sbt` using this plugin:
 ```scala
 enablePlugins(ArtifactoryPlugin)
 artifactoryPort := "8081"
-artifactoryPort := "localhost"
+artifactoryHost := "localhost"
 ```
 
 running `sbt publish` will publish the artifacts to Artifactory. 
