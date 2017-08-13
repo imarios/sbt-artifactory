@@ -2,7 +2,7 @@ package io.mi.sbt.plugin.artifactory
 
 import sbt.plugins.JvmPlugin
 import sbt.{AutoPlugin, Plugins, Setting, SettingKey, settingKey}
-import sbt.Keys.{publishTo, isSnapshot, publishArtifact, packageDoc, credentials, resolvers, sLog}
+import sbt.Keys.{publishTo, isSnapshot, pomIncludeRepository, publishMavenStyle, publishArtifact, packageDoc, credentials, resolvers, sLog}
 import sbt._
 
 /**
@@ -51,6 +51,8 @@ object ArtifactoryPlugin extends AutoPlugin {
   override def globalSettings: Seq[Setting[_]] = Nil
 
   override lazy val projectSettings: Seq[Setting[_]] = Seq(
+    publishMavenStyle := true,
+    pomIncludeRepository := Function.const(false),
     artifactoryHostname := "127.0.0.1",
     artifactoryServerAliveTimeout := 1500,
     artifactoryPort := "8081",
