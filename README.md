@@ -2,11 +2,13 @@
 
 An sbt plugin to ease working with Artifactory. Currently cross published for `sbt 0.13.x and 1.0.x`. 
 
-This plugin is trying to solve the following:
-* Gives default repository name for Artifactory and simplifies your `build.sbt` file
-* If for any reason you cannot access the Artifactory server (e.g., you are outside the VPN) 
-it will detect this quickly and will not add Artifactory to your set of resolvers and save you
-tone of wasted time
+This plugin offers the following
+* Reasonable default settings for Artifactory that simplify your `build.sbt` file
+* Same settings for both publishing and resolving artifacts to/from Artifactory
+* Detects when the Artifactory server is not accessible and proberly adjusts your project's resolves 
+(saving a lot of time querying the server and timing-out)
+
+## Getting started
 
 To use the plugin in your sbt project, add the following under `project/plugins.sbt`.
 
@@ -24,7 +26,7 @@ artifactoryPort := "8081"
 artifactoryHost := "localhost"
 ```
 
-running `sbt publish` will publish the artifacts to Artifactory. 
+running `sbt publish` will publish the artifacts to Artifactory (read below if the credentials are not the defaults). 
 
 ```scala
 sbt> show artifactoryReleaseRepoResolver
@@ -35,3 +37,11 @@ sbt> show artifactorySnapshotRepoResolver
 
 This assumes you already have configured Artifactory to have libs-snapshot-local,libs-release-local 
 as valid sbt repositories. [See instructions here](https://www.jfrog.com/confluence/display/RTF/SBT+Repositories).
+
+## Publishing with different username/password
+
+The default username/password for artifactory is admin/password. If your server has these defaults, then everything should work as described above. If your server has different credentials (which is probably the smart thing to do), then this is the suggest way of publishing your artifacts:
+
+```bash
+ARTIFACTORY_USER="add your user name here" ARTIFACTORY_PASS="add your password here" sbt publish
+```
