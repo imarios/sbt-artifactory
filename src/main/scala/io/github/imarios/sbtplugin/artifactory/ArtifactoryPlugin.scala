@@ -1,4 +1,4 @@
-package io.mi.sbt.plugin.artifactory
+package io.github.imarios.sbtplugin.artifactory
 
 import sbt.plugins.JvmPlugin
 import sbt.{AutoPlugin, Plugins, Setting, SettingKey, settingKey}
