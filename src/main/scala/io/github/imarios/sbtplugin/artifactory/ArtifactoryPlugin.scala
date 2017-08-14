@@ -2,7 +2,7 @@ package io.github.imarios.sbtplugin.artifactory
 
 import sbt.plugins.JvmPlugin
 import sbt.{AutoPlugin, Plugins, Setting, SettingKey, settingKey}
-import sbt.Keys.{publishTo, isSnapshot, pomIncludeRepository, publishMavenStyle, publishArtifact, packageDoc, credentials, resolvers, sLog}
+import sbt.Keys._
 import sbt._
 
 /**
@@ -103,7 +103,7 @@ object ArtifactoryPlugin extends AutoPlugin {
       } else {
         sLog.value.warn(
           s"Unable to find Artifactory server on ${artifactoryHostname.value} at port ${artifactoryPort.value}. " +
-          s"Using local Maven repository instead.")
+            s"Using local Maven repository instead.")
         Seq(Resolver.mavenLocal)
       }
     })

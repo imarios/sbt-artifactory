@@ -17,13 +17,12 @@ addSbtPlugin("io.github.imarios" % "sbt-artifactory" % "1.0.0-SNAPSHOT")
 resolvers ++= Seq("Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots")
 ```
 
-
 A minimal `build.sbt` using this plugin:
 
 ```scala
 enablePlugins(ArtifactoryPlugin)
 artifactoryPort := "8081"
-artifactoryHost := "localhost"
+artifactoryHostname := "localhost"
 ```
 
 running `sbt publish` will publish the artifacts to Artifactory (read below if the credentials are not the defaults). 
@@ -40,7 +39,9 @@ as valid sbt repositories. [See instructions here](https://www.jfrog.com/conflue
 
 ## Publishing with different username/password
 
-The default username/password for artifactory is admin/password. If your server has these defaults, then everything should work as described above. If your server has different credentials (which is probably the smart thing to do), then this is the suggest way of publishing your artifacts:
+The default username/password for artifactory is admin/password. If your server has these defaults, 
+then everything should work as described above. If your server has different credentials (which is 
+probably the smart thing to do), then this is the suggest way of publishing your artifacts:
 
 ```bash
 ARTIFACTORY_USER="add your user name here" ARTIFACTORY_PASS="add your password here" sbt publish
